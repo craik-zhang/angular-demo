@@ -15,6 +15,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MoneyPipe } from './pipe/money.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ProductDetailComponent,
     NavbarComponent,
     FooterComponent,
-    SignInComponent
+    SignInComponent,
+    MoneyPipe
   ],
   imports: [
     BrowserModule,
