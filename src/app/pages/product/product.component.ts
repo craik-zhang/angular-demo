@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from '../../services/product.service';
 
 interface ProductItem {
   id: string;
@@ -30,12 +31,15 @@ const PRODUCTS: ProductItem[] = [{
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   products: ProductItem[];
 
   ngOnInit(): void {
-    this.products = PRODUCTS
+    this.productService.allProducts().subscribe(data => {
+      console.log(JSON.stringify(data));
+    })
+    this.products = PRODUCTS;
   }
 
 }

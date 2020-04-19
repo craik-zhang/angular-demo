@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /* bootstrap 按需导入，可以使我们最终的打包文件更小 */
-// import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MoneyPipe } from './pipe/money.pipe';
+import {JwtInterceptor} from './interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,11 +32,13 @@ import { MoneyPipe } from './pipe/money.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule,
+    NgbAlertModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
